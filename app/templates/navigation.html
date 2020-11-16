@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">ISB</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        {% if session %}
+        <!-- Ini bagian sudah Login -->
+        <!-- <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              {{ session["name"] }}
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">About Me</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+        </div> -->
+        <ul class="navbar-nav ml-auto">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    {{ session["name"] }}
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">profile</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
+            </div>
+        </ul>
+        {% else %}
+        <!-- Ini untuk Login/Register -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/login2">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-warning" href="/register2">Register</a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+</nav>
+

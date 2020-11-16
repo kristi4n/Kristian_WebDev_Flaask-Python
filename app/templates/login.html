@@ -21,9 +21,16 @@
             </div>
             <div class='col-md-4 col-xs-12'>
                 <h3>Masuk</h3>
-                <form action='/authenticate' method='POST'>
+                {% if error %}
+                <h4>{{ error }}</h4>
+                {% endif %}
+                <form action='/login2' method='POST'>
                     <label for="Username">Username</label>
+                    {% if nama %}
+                    <input class='form-control' type="text" name="nama_user" id="nama_user" value="{{ nama }}">
+                    {% else %}
                     <input class='form-control' type="text" name="nama_user" id="nama_user">
+                    {% endif %}
                     <label for="Username">Password</label>
                     <input class='form-control' type="password" name="kata_sandi" id="kata_sandi">
                     <br>
