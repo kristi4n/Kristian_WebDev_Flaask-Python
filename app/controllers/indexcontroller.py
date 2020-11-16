@@ -10,12 +10,15 @@ from app.models.user import User ## import kelas User dari model
 
 app.secret_key = "Latihan"
 authorize = False
+currentpage = "index"
 @app.route('/')
-def index():
+def index():	
+	global currentpage
+	currentpage = "index"
 	return render_template('index.html')
 
-@app.route('/login2', methods = ["GET", "POST"])
-def login():	
+@app.route('/login', methods = ["GET", "POST"])
+def login():		
 	error = None
 	Data = {
 		"username" : "admin",
@@ -29,8 +32,9 @@ def login():
 			if Data["username"] == request.form["nama_user"]:
 				if Data["password"] == request.form["kata_sandi"]:
 					session["username"] = request.form["nama_user"]
-					session["name"] = "administrator"
-					return render_template('index.html', session = session)
+					session["name"] = "administrator The Best"
+					#return render_template('index.html', session = session)
+					return redirect(url_for(currentpage, session = session))
 				else:
 					error = "Password Salah"
 					nama = request.form["nama_user"]
@@ -61,7 +65,7 @@ def authenticate():
 		return render_template('login.html', error)
 
 
-@app.route('/register2')
+@app.route('/register')
 def register():
 	return render_template('register.html')
 
@@ -73,7 +77,10 @@ def logout():
 
 @app.route('/useronly')
 def useronly():
+	global currentpage
+	currentpage = "useronly"
 	if session:
 		return render_template('user_only.html')
 	else:
+		return redirect(url_for("login"))
 		
